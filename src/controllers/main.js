@@ -90,6 +90,62 @@ function changeStatus(event) {
 }
 
 /**
+ * Sort tasks ascending
+ */
+function sortASC() {
+   var sortArr = [];
+
+   taskList.arr.forEach(function (task) {
+      if (task.status === "todo") {
+         sortArr.push(task);
+      }
+   });
+
+   sortArr.sort(function (a, b) {
+      var nameA = a.taskName.toLowerCase();
+      var nameB = b.taskName.toLowerCase();
+      if (nameA < nameB) {
+         return -1;
+      }
+
+      if (nameA > nameB) {
+         return 1;
+      }
+
+      return 0;
+   });
+
+   console.log("Arr tang: ", sortArr);
+}
+
+/**
+ * Sort tasks decrease
+ */
+function sortDEC() {
+   var sortArr = [];
+
+   taskList.arr.forEach(function (task) {
+      if (task.status === "todo") {
+         sortArr.push(task);
+      }
+   });
+
+   sortArr.sort(function (a, b) {
+      var nameA = a.taskName.toLowerCase();
+      var nameB = b.taskName.toLowerCase();
+      if (nameA > nameB) {
+         return -1;
+      }
+      if (nameA < nameB) {
+         return 1;
+      }
+      return 0;
+   });
+
+   console.log("Arr giam: ", sortArr);
+}
+
+/**
  * Render ToDo List
  * @param {*} data
  */
