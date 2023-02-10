@@ -115,7 +115,7 @@ function sortASC() {
       return 0;
    });
 
-   console.log("Arr tang: ", sortArr);
+   getEle("todo").innerHTML = taskList.renderTodo(sortArr);
 }
 
 /**
@@ -142,7 +142,7 @@ function sortDEC() {
       return 0;
    });
 
-   console.log("Arr giam: ", sortArr);
+   getEle("todo").innerHTML = taskList.renderTodo(sortArr);
 }
 
 /**
@@ -150,47 +150,8 @@ function sortDEC() {
  * @param {*} data
  */
 function renderToDo(data) {
-   var contentToDo = "";
-   var contentCom = "";
-   if (data) {
-      data.forEach((task) => {
-         if (task.status === "todo") {
-            contentToDo += `
-               <li>
-                  <span>${task.taskName}</span>
-                  <div class="buttons">
-                     <button class="remove" data-index="${task.id}" data-status="${task.status}" onclick="deleteTask(event)">
-                        <i class="fa fa-trash-alt"></i>
-                     </button>
-                     <button class="complete" data-index="${task.id}" data-status="${task.status}" onclick="changeStatus(event)">
-                        <i class="far fa-check-circle"></i>
-                        <i class="fas fa-check-circle"></i>
-                     </button>
-                  </div>
-               </li>
-            `;
-         }
-         if (task.status === "completed") {
-            contentCom += `
-               <li>
-                  <span>${task.taskName}</span>
-                  <div class="buttons">
-                     <button class="remove" data-index="${task.id}" data-status="${task.status}" onclick="deleteTask(event)">
-                        <i class="fa fa-trash-alt"></i>
-                     </button>
-                     <button class="complete" data-index="${task.id}" data-status="${task.status}" onclick="changeStatus(event)">
-                        <i class="far fa-check-circle"></i>
-                        <i class="fas fa-check-circle"></i>
-                     </button>
-                  </div>
-               </li>
-            `;
-         }
-      });
-
-      getEle("todo").innerHTML = contentToDo;
-      getEle("completed").innerHTML = contentCom;
-   }
+   getEle("todo").innerHTML = taskList.renderTodo(data);
+   getEle("completed").innerHTML = taskList.renderCom(data);
 }
 
 /**
